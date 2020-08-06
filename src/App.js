@@ -1,11 +1,14 @@
 import React from 'react';
+import io from 'socket.io-client';
+
 // import { BrowserRouter, Route, Link } from "react-router-dom"; 
 import './assets/index.css';
 import AddTodo from "./components/AddTodo";
 import Render from "./components/RenderData";
 import Header from './components/Header'
 import Request from './components/RequestData'
-import io from 'socket.io-client';
+import Sort from './components/SortBy';
+
 const URL = {
   localhost: "http://localhost:5050",
   deploy: ""
@@ -29,8 +32,6 @@ class App extends React.Component {
   }
 
   Completed = (id) => {
-
-
     let isComplete = this.state.todos.find(el => el.id === id).completed
     const status = isComplete = !isComplete
     this.state.socket.emit("updateCompleted", { id, status });
@@ -41,8 +42,15 @@ class App extends React.Component {
     this.state.socket.emit("deleteTodo", id);
   }
 
-  Ontest = (todos) => {
-    this.setState({ todos });
+  getTodos = (todos) => {
+    this.setState({ todos: todos.sort((a, b) => a.completed < b.completed ? -1 : 1) });
+  }
+
+  OnSort = ({ type, sorted }) => {
+    console.log(type, sorted)
+    this.setState({
+      todos: this.state.todos.sort((a, b) => a[type] > b[type] ? sorted ? -1 : 1 : sorted ? 1 : -1)
+    });
   }
 
   render() {
@@ -54,11 +62,14 @@ class App extends React.Component {
         <div className="center">
           <AddTodo addTodo={this.AddTodo} previewText={this.PreviewText} />
         </div>
+        <div className="sort">
+          <Sort sorted={this.OnSort} />
+        </div>
         <div className="center">
           <Render data={this.state.todos} completed={this.Completed} deleteTodo={this.DeleteTodo} />
         </div>
         <div>
-          <Request onTest={this.Ontest} />
+          <Request getTodos={this.getTodos} />
         </div>
       </div>
     );

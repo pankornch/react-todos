@@ -9,7 +9,7 @@ class AddData extends Component {
 
         this.props.addTodo({
             id: v4(),
-            title: e.target.todo.value,
+            title: e.target.todo.value.charAt(0).toUpperCase().concat(e.target.todo.value.slice(1)),
             time: new Date(),
             completed: false
         });

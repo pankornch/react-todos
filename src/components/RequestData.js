@@ -11,7 +11,7 @@ class Request extends Component {
             socket: io.connect('http://localhost:5050')
         }, () => {
             this.state.socket.emit('reqTodos').on("getTodos", todos => {
-                this.props.onTest(todos)
+                this.props.getTodos(todos)
             })
         });
     }
