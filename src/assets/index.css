@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #282c34;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    height: 80vh;
+    width: 90vw;
+    margin: auto;
+    margin-top: 5vh;
+    -webkit-box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.75);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Header */
+
+.header {
+    font-size: 2.5rem;
+}
+
+
+/* AddTodo */
+
+.form {
+    padding: 2rem;
+}
+
+.form form {
+    display: flex;
+    align-items: center;
+}
+
+.form input[type="text"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    height: 2.5rem;
+    width: 60vw;
+    outline: none;
+    margin-right: 0.5rem;
+}
+
+.form input[type="text"]:focus {
+    outline: #4D8CEB solid 1.5px;
+}
+
+.form input[type="submit"] {
+    color: white;
+    font-weight: 600;
+    background-color: #4D8CEB;
+    height: 2.5rem;
+    width: 5vw;
+    outline: none;
+    border: none;
+}
+
+.form input[type="submit"]:hover {
+    transition: 0.5s;
+    background-color: #4DAEEB;
+}
+
+.form img {
+    width: 0.7rem;
+    height: auto;
+    cursor: pointer;
+}
+
+
+/* RenderData */
+
+.list-item {
+    width: 65vw;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #1b1b1b50;
+}
+
+.list-item .left {
+    cursor: pointer;
+    width: 50%;
+}
+
+.list-item p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.list-item img {
+    width: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.list-item .completed {
+    color: #1b1b1b50;
+    text-decoration: line-through;
+}
+
+.empty {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 762px) {
+    .form form {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .form form input[type="text"], .form form input[type="text"]:focus {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: center;
+        border: none;
+        border-bottom: black solid 1px;
+        outline: none;
+    }
+
+    .form form input[type="submit"] {
+        margin-top: 1rem;
+        justify-self: stretch;
+        width: 60vw;
+    }
+}
